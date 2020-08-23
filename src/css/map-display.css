@@ -1,0 +1,6 @@
+.range-display {
+    position: fixed;
+    top: 50px;
+    left: 0;
+    z-index: 4;
+}

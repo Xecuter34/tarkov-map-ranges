@@ -1,0 +1,21 @@
+@font-face {
+    font-family: 'EFT';
+    src: url('../font/eft-font.ttf') format('truetype')
+}
+
+html {
+    text-transform: uppercase;
+    margin: 0;
+    font-family: 'EFT', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    background-color: #0e0e0e !important;
+    color: #9a8866 !important;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
