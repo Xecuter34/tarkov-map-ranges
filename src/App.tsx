@@ -6,9 +6,19 @@ import MapSelect from './components/MapSelect';
 import MapDisplay from './components/MapDisplay';
 
 import MapContext from './context/MapContext';
+import MapRangeContext from './context/MapRangeContext';
+
+import IRange from './interfaces/IRange';
 
 const App = () => {
   const [currentMap, setCurrentMap] = useState<string>('reserve');
+  const [mapRanges, setMapRanges] = useState<IRange>({
+    one: 100,
+    two: 200,
+    three: 300,
+    four: 400,
+    five: 500
+});
   
   return (
     <>
@@ -17,7 +27,9 @@ const App = () => {
         <Row style={{paddingTop: '50px'}}>
           <MapContext.Provider value={{currentMap: currentMap, setFunc: setCurrentMap}}>
             <MapSelect />
-            <MapDisplay />
+            <MapRangeContext.Provider value={{mapRanges: mapRanges, setFunc: setMapRanges}}>
+              <MapDisplay />
+            </MapRangeContext.Provider>
           </MapContext.Provider>
         </Row>
       </Container>
