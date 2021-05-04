@@ -1,19 +1,17 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Col } from 'react-bootstrap';
 
-import '../css/map-display.css';
-
-
 import MapContext from '../context/MapContext';
 import MapRangeContext from '../context/MapRangeContext';
+import DebugContext from '../context/DebugContext';
 
 import MapReserve from './maps/MapReserve';
-
 
 const MapDisplay = () => {
     let active = false;
     const CurrentMapContext = useContext(MapContext);
     const CurrentMapRangeContext = useContext(MapRangeContext);
+    const MapDebugContext = useContext(DebugContext);
 
     /*
 
@@ -27,35 +25,49 @@ const MapDisplay = () => {
         const mapDisplay = document.getElementById('map-display');
         if (mapDisplay !== null) {
             const mapContainer = document.getElementById('map-container');
+
+            // Clear any canvas already there...
+            if (document.getElementById('range-display') !== null) {
+                document.getElementById('range-display')?.remove();
+            };
+
             const canvas = document.createElement('canvas');
             canvas.id = 'range-display';
             canvas.setAttribute('class', 'range-display');
             canvas.width = document.body.clientWidth;
             canvas.height = mapDisplay.clientHeight;
-            canvas.onmousedown = (e) => {
+            canvas.onmousedown = (e:any) => {
                 setMouseActive(e);
             };
 
-            canvas.onmouseup = (e) => {
+            canvas.onmouseup = (e:any) => {
                 setMouseActive(e);
             };
 
-            canvas.onmousemove = (e) => {
-                //@ts-ignore
+            canvas.onmousemove = (e:any) => {
                 drawRadius(e);
             };
 
             mapContainer?.appendChild(canvas);
         };
-    }, []);
+    }, [CurrentMapContext.currentMap]);
 
-    const setMouseActive = (e: MouseEvent) => {
+    const setMouseActive = (e: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
         if (e.type === 'mousedown') {
             active = true;
-            //@ts-ignore
             drawRadius(e);
         } else if (e.type === 'mouseup') {
             active = false;
+
+            const coord = getMousePosition(e, e.currentTarget);
+            if (MapDebugContext.dispatch !== undefined) {
+                MapDebugContext.dispatch({
+                    type: 'radius', value: {
+                        mouseX: coord.x,
+                        mouseY: coord.y
+                    }
+                });
+            };
         };
     };
 

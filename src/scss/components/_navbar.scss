@@ -1,0 +1,16 @@
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 50px;
+  width: 100vw;
+  background-color: #000;
+  color: $primary-color;
+  box-shadow: 0 0 100px rgba(65, 61, 52, 1), 0 0 6px rgba(232, 190, 107, 0.8);
+  font-family: 'EFT', sans-serif;
+
+  .header-title {
+    margin-top: 13px;
+    margin-left: 10px;
+  }
+}

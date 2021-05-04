@@ -9,11 +9,11 @@ const MapReserve = () => {
 
     useEffect(() => {
         RangeContext.setFunc({
-            one: 1000,
-            two: 2000,
-            three: 3000,
-            four: 4000,
-            five: 5000
+            one: 100,
+            two: 200,
+            three: 300,
+            four: 400,
+            five: 500
         });
     }, []);
 

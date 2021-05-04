@@ -1,0 +1,67 @@
+.map-container {
+  position: fixed;
+  top: 100px;
+  left: 80px;
+  width: 250px;
+  background: url(../../images/map_li_bg.png) repeat top left scroll;
+  background-color: $secondary-color;
+  z-index: 5;
+  box-shadow: 0 0 100px rgba(65, 61, 52, 1), 0 0 6px rgba(232, 190, 107, 0.8);
+  font-family: 'EFT', sans-serif;
+
+  .map-title {
+    padding: 10px;
+    border-bottom: 1px solid $primary-color;
+    box-shadow: 0 0 0px rgba(65, 61, 52, 1), 0 0 2px rgba(232, 190, 107, 0.8);
+    user-select: none;
+    cursor: pointer;
+
+    .map-title-icon {
+      position: absolute;
+      left: calc(100% - 25px);
+      top: calc(0% + 14px);
+    }
+  }
+
+  .map-list {
+    display: none;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+
+    &.active {
+      display: block;
+    }
+
+    .map-item {
+      width: 250px;
+      padding: 10px;
+      padding-left: 20px;
+      transition-duration: .2s;
+
+      &:hover {
+        cursor: pointer;
+        background-color: $primary-color;
+        color: $secondary-color;
+      }
+
+      &.active {
+        background-color: $primary-color !important;
+        color: $secondary-color !important;
+      }
+    }
+  }
+}
+
+@keyframes slidein {
+  from {
+      display: block;
+      height: 0px;
+  }
+  75% {
+      height: 50%;
+  }
+  to {
+      height: 100%;
+  }
+}

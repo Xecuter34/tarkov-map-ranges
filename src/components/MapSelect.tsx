@@ -1,14 +1,15 @@
 import React, { useContext, useState } from 'react';
 import classNames from 'classnames';
-import '../css/map-select.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
 import MapContext from '../context/MapContext';
+import DebugContext from '../context/DebugContext';
 
 const MapSelect = ({...props}) => {
     const [active, setActive] = useState<boolean>(false);
     const CurrentMapContext = useContext(MapContext);
+    const MapDebugContext = useContext(DebugContext);
 
     const containerClick = (event: React.MouseEvent<HTMLElement, MouseEvent>) : void => {
         if (active) {
@@ -25,6 +26,9 @@ const MapSelect = ({...props}) => {
             } onClick={(e) => { 
                 CurrentMapContext.setFunc(mapName);
                 containerClick(e);
+                if (MapDebugContext.dispatch !== undefined) {
+                    MapDebugContext.dispatch({type: 'map', value: mapName});
+                };
             }}>{mapName}</li>
         )
     }
