@@ -33,7 +33,7 @@ const App = () => {
   };
 
   const reducer = (state:IDebug, action:any) => {
-    const initialState:IDebug = state;
+    const initialState:IDebug = JSON.parse(JSON.stringify(state));
     switch (action.type) {
       case 'map':
         initialState.currentMap = action.value;
