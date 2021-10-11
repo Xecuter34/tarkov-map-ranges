@@ -1,0 +1,32 @@
+$debug-height: 350px;
+$debug-width: 300px;
+
+.debug-window {
+  position: fixed;
+  top: calc(100% - 350px);
+  left: calc(100% - 300px);
+  height: $debug-height;
+  width: $debug-width;
+  background: url(../../images/map_li_bg.png) repeat top left scroll;
+  background-color: $secondary-color;
+  box-shadow: 0 0 100px rgba(65, 61, 52, 1), 0 0 6px rgba(232, 190, 107, 0.8);
+  padding: 10px;
+  z-index: 6;
+
+  .debug-refresh {
+    position: absolute;
+    top: calc(0% + 10px);
+    left: calc(100% - 30px);
+  }
+
+  .debug-header {
+    font-family: 'EFT';
+    color: #FFF;
+    text-decoration: underline;
+  }
+
+  .debug-info {
+    color: #FFF;
+    font-weight: 300;
+  }
+}
